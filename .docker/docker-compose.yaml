@@ -1,0 +1,7 @@
+services:
+  pubsub:
+    container_name: pubsub
+    image: gcr.io/google.com/cloudsdktool/cloud-sdk:emulators
+    command: gcloud beta emulators pubsub start --project=local-project --host-port=0.0.0.0:8086 --quiet
+    ports:
+      - ${PUBSUB_PORT}:8086
