@@ -24,6 +24,9 @@ components:
           enum:
             - ok
             - ng
+        bool:
+          type: boolean
+          description: 真偽値
       required:
         - id
         - publishedAt

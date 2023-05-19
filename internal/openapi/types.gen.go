@@ -11,6 +11,9 @@ const (
 
 // Message defines model for Message.
 type Message struct {
+	// Bool 真偽値
+	Bool *bool `json:"bool,omitempty"`
+
 	// Id ID
 	Id string `json:"id"`
 
