@@ -2,10 +2,12 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"log"
 	"os"
 
 	"cloud.google.com/go/pubsub"
+	"github.com/otkakot/pubsubemulate/internal/openapi"
 )
 
 func main() {
@@ -24,7 +26,13 @@ func main() {
 
 	if err := sub.Receive(ctx, func(ctx context.Context, m *pubsub.Message) {
 		defer m.Ack()
-		log.Printf("received message id: %s, data: %s", m.ID, m.Data)
+		var msg openapi.Message
+
+		if err := json.Unmarshal(m.Data, &msg); err != nil {
+			panic(err)
+		}
+
+		log.Printf("received message: %+v", msg)
 	}); err != nil {
 		panic(err)
 	}

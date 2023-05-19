@@ -2,11 +2,14 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"log"
 	"os"
+	"time"
 
 	"cloud.google.com/go/pubsub"
 	"github.com/google/uuid"
+	"github.com/otkakot/pubsubemulate/internal/openapi"
 )
 
 func main() {
@@ -23,8 +26,19 @@ func main() {
 
 	topic := ps.Topic(topicID)
 
+	msg := openapi.Message{
+		Id:          uuid.NewString(),
+		PublishedAt: time.Now().Unix(),
+		Status:      openapi.Ok,
+	}
+
+	mj, err := json.Marshal(msg)
+	if err != nil {
+		panic(err)
+	}
+
 	res := topic.Publish(ctx, &pubsub.Message{
-		Data: []byte(uuid.NewString()),
+		Data: mj,
 	})
 
 	id, err := res.Get(ctx)

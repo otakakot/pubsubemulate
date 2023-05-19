@@ -1,0 +1,41 @@
+openapi: 3.0.3
+info:
+  title: PubSub Emulate
+  description: |-
+    PubSub Emulate
+  version: 1.0.0
+servers:
+  - url: http://localhost:8686
+components:
+  schemas:
+    Message:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID
+        publishedAt:
+          type: integer
+          description: プッシュ日時
+          format: int64
+        status:
+          type: string
+          description: ステータス
+          enum:
+            - ok
+            - ng
+      required:
+        - id
+        - publishedAt
+        - status
+paths:
+  /:
+    get:
+      deprecated: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
