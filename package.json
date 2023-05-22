@@ -7,7 +7,7 @@
     "gen": "openapi --input ./openapi/openapi.yaml --output ./gen",
     "publish": "ts-node cmd/publish/index.ts",
     "subscribe": "ts-node cmd/subscribe/index.ts",
-    "test": "jest"
+    "test": "export PUBSUB_EMULATOR_HOST=localhost:8686 && jest"
   },
   "keywords": [],
   "author": "",

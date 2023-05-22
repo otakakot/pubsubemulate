@@ -1,8 +1,6 @@
 import { PubSub } from '@google-cloud/pubsub';
 
 test('subscribe', (done) => {
-    process.env.PUBSUB_EMULATOR_HOST="localhost:8686"
-
     const projectId = 'local-project';
 
     const topicNameOrId = 'local-topic';

@@ -7,8 +7,6 @@ type Message = {
 }
 
 test('publish', async () => {
-    process.env.PUBSUB_EMULATOR_HOST="localhost:8686"
-
     const projectId = 'local-project';
 
     const topicNameOrId = 'local-topic';
