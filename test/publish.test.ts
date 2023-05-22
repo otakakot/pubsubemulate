@@ -1,10 +1,5 @@
 import { PubSub } from '@google-cloud/pubsub';
-
-type Message = {
-    id: string;
-    publishedAt: number;
-    status: string;
-}
+import { Message } from '../gen';
 
 test('publish', async () => {
     const projectId = 'local-project';
@@ -18,7 +13,7 @@ test('publish', async () => {
     const message: Message = {
       id: '1',
       publishedAt: new Date().getTime(),
-      status: 'ok',
+      status: Message.status.OK,
     }
   
     const topicId = await topic.publishMessage({data: Buffer.from(JSON.stringify(message))});
