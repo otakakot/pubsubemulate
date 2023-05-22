@@ -5,12 +5,9 @@ async function subscribe(
   topicNameOrId = 'local-topic', // Name for the new topic to create
   subscriptionName = 'local-subscription' // Name for the new subscription to create
 ) {
-  // Instantiates a client
   const pubsub = new PubSub({projectId});
 
-  // Creates a new topic
   const topic= pubsub.topic(topicNameOrId);
-  console.log(`Topic ${topic.name} created.`);
 
   const subscription = topic.subscription(subscriptionName);
 
