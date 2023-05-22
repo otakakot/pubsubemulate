@@ -23,7 +23,7 @@ test('publish', async () => {
       status: 'ok',
     }
   
-    const topicId = await topic.publish(Buffer.from(JSON.stringify(message)));
+    const topicId = await topic.publishMessage({data: Buffer.from(JSON.stringify(message))});
   
     console.log(`Message ${topicId} published.`);
 });
