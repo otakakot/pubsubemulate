@@ -1,11 +1,5 @@
 import { PubSub } from '@google-cloud/pubsub';
 
-type Message = {
-    id: string;
-    publishedAt: number;
-    status: string;
-}
-
 test('subscribe', (done) => {
     process.env.PUBSUB_EMULATOR_HOST="localhost:8686"
 
